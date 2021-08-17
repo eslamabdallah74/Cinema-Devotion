@@ -6,82 +6,28 @@
         <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 :xl:grid-cols-6 gap-12 border-b border-gray-800 pb-10">
             {{-- ^^^^^^^^ Grid System ^^^^^^^ --}}
             {{-- ˅˅˅˅˅˅˅ Childerns ˅˅˅˅˅ --}}
+            @foreach ($games as $game )
             <div class="game mt-8">
                 <div class="relative inline-block">
                     <a href="#">
                         <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
                     </a>
+                    @if ($game['aggregated_rating'])
                     <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
                     style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">80&</div>
+                        <div class="font-semibold text-xs flex justify-center items-center h-full">{{$game['aggregated_rating']}}%</div>
                     </div>
+                    @endif
+
 
                 </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
-                    Game Name
+                <a href="{{$game['url']}}" target="_blank" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
+                    {{$game['name']}}
                 </a>
                 <div class="text-gray-400 mt-1">GameTag</div>
             </div> {{-- End of the game --}}
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                    style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">80&</div>
-                    </div>
+            @endforeach
 
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
-                    Game Name
-                </a>
-                <div class="text-gray-400 mt-1">GameTag</div>
-            </div> {{-- End of the game --}}            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                    style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">80&</div>
-                    </div>
-
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
-                    Game Name
-                </a>
-                <div class="text-gray-400 mt-1">GameTag</div>
-            </div> {{-- End of the game --}}            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                    style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">80&</div>
-                    </div>
-
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
-                    Game Name
-                </a>
-                <div class="text-gray-400 mt-1">GameTag</div>
-            </div> {{-- End of the game --}}            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                    style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">80&</div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
-                    Game Name
-                </a>
-                <div class="text-gray-400 mt-1">GameTag</div>
-            </div> {{-- End of the game --}}
         </div> {{-- end of Popular Games --}}
 
      {{-- Second Section [recently Reviewd and Coming Soon] --}}
@@ -153,7 +99,7 @@
             </div>
             </div>
         </div> {{-- end of right section --}}
-        
+
     </div>
 </div> {{-- End of contaier --}}
 @endsection
