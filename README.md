@@ -1,2 +1,5 @@
 # GamingZone
-  a website for games news and rate
+ Movies
+tv shows
+actors 
+movie images
