@@ -21,7 +21,7 @@
                     @endif
 
                 </div>
-                <a href="#" target="_blank" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
+                <a href="{{route('movies.show', $movie['id'])}}" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
                     {{$movie['title']}}
                 </a>
                 <div class="text-gray-400 mt-1">
@@ -30,10 +30,10 @@
                     @endforeach
                 </div>
                 <p class="text-gray-300">{{\carbon\carbon::parse($movie['release_date'])->format('M d, Y')  }}</p>
-            </div> {{-- End of the game --}}
+            </div> {{-- End of the movie --}}
             @endforeach
 
-        </div> {{-- end of Popular Games --}}
+        </div> {{-- end of Popular Movies --}}
 
      {{-- Second Section [recently Reviewd and Coming Soon] --}}
     <div class="flex flex-col lg:flex-row my-10">
@@ -45,7 +45,7 @@
                 <div class="game bg-gray-800 rounded-lg shadow-md flex p-6">
                     {{-- Card image --}}
                     <div class="relative flex-none">
-                        <a href="#">
+                        <a href="{{route('movies.show', $movie['id'])}}">
                             <img src="{{'https://image.tmdb.org/t/p/w400/'.$show['poster_path']}}" alt="Game Poser" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="ml-12">
-                        <a href="#" class="block text-lg font-semibold leading-tight hover:text-blue-500 mt-2 transition ease-in-out duration-200">{{$show['name']}}</a>
+                        <a href="{{route('movies.show', $movie['id'])}}" class="block text-lg font-semibold leading-tight hover:text-blue-500 mt-2 transition ease-in-out duration-200">{{$show['name']}}</a>
                         <div class="text-gray-400 mt-1">
                             @foreach ($show['genre_ids'] as $genre)
                             {{$genres->get($genre) }}@if (!$loop->last).@endif
@@ -67,7 +67,7 @@
                         <div class="mt-10 text-green-400 flex">
                             <div class="w-full lg:w-3/4">
                                 <h5>First Air Date</h5>
-                                <p class="text-gray-300">{{\carbon\carbon::parse($show['first_air_date'])->format('M d, Y')  }}</p>
+                                <p class="text-gray-300">{{\carbon\carbon::parse($show['first_air_date'])->format('M d, Y')}}</p>
                             </div>
                         </div>
                     </div>
