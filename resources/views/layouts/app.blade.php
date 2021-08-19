@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GamingZone</title>
+    <title>MoviesZone</title>
     {{-- style --}}
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    {{-- Fonts --}}
+
 
 
 </head>
@@ -19,7 +21,7 @@
             <div class="flex flex-col lg:flex-row items-center">
                 <a href="/"><img class="flex-none" src="{{asset('assets/favicon-32x32.png')}}" alt="Logo"></a>
                 <ul class="flex m-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
-                    <li><a href="#" class="hover:text-gray-400">Games</a></li>
+                    <li><a href="#" class="hover:text-gray-400">Movies</a></li>
                     <li><a href="#" class="hover:text-gray-400">Reviews</a></li>
                     <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>
                 </ul>
@@ -47,11 +49,11 @@
     {{-- Footer --}}
     <footer class="border-t border-gray-800">
         <div class="container mx-auto px-4 py-6">
-            Powerd By <a href="#" class="text-blue-500 hover:text-blue-900">IGDB API</a>
+            Powerd By <a href="https://www.themoviedb.org/" target="_blank" class="text-blue-500 hover:text-blue-900">TMDB API</a>
         </div>
     </footer>
     <script>
-        
+
     </script>
 </body>
 </html>
