@@ -27,6 +27,11 @@ class GameController extends Controller
         ->get('https://api.themoviedb.org/3/movie/popular')
         ->json()['results'];
 
+
+        $NowPlaying = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/top_rated')
+        ->json()['results'];
+
         $genresArray = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/genre/movie/list')
         ->json()['genres'];
@@ -44,9 +49,11 @@ class GameController extends Controller
             return [$genre['id'] => $genre['name']];
         });
 
+        // dump($NowPlaying);
 
         return view('index',[
             'movies'     => $movies,
+            'NowPlaying' => $NowPlaying,
             'genres'     => $genres,
             'tvShows'    => $tvShows,
             'Tvgenres'   => $Tvgenres

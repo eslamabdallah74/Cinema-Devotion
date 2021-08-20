@@ -60,10 +60,11 @@
                 {{-- Cast Start Card --}}
                 @foreach ($movie['credits']['cast'] as $cast)
                 @if ($loop->index < 6)
+                   @if ($cast['profile_path'])
                 <div class="game mt-8">
                     <div class="relative inline-block">
                         <a href="#">
-                            <img src="{{'https://image.tmdb.org/t/p/w400/'.$cast['profile_path']}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150 w-64 md:w-96">
+                            <img src="{{'https://image.tmdb.org/t/p/w400/'.$cast['profile_path']}}" alt="Movie Actor" class="hover:opacity-75 transition ease-in-out duration-150 w-64 md:w-96">
                         </a>
                     </div>
                     <a href="#" target="_blank" class="block text-xl font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
@@ -71,6 +72,7 @@
                     </a>
                     <p class="text-gray-400 text-sm">{{$cast['character']}}</p>
                 </div>
+                 @endif
                 @endif
                 @endforeach
                  {{-- Cast End Card --}}

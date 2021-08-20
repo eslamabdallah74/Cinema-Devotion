@@ -38,36 +38,36 @@
      {{-- Second Section [recently Reviewd and Coming Soon] --}}
     <div class="flex flex-col lg:flex-row my-10">
         <div class="recently-reviewd w-full lg:w-3/4 mr-0 lg:mr-32">          {{-- left Section --}}
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Trending TV shows </h2>
-            @foreach ($tvShows as $show)
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">top rated </h2>
+            @foreach ($NowPlaying as $now)
             <div class="recently-reviewd-container space-y-12 mt-8">
                 {{-- Game Card --}}
                 <div class="game bg-gray-800 rounded-lg shadow-md flex p-6">
                     {{-- Card image --}}
                     <div class="relative flex-none">
-                        <a href="{{route('movies.show', $movie['id'])}}">
-                            <img src="{{'https://image.tmdb.org/t/p/w400/'.$show['poster_path']}}" alt="Game Poser" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
+                        <a href="{{route('movies.show', $now['id'])}}">
+                            <img src="{{'https://image.tmdb.org/t/p/w400/'.$now['poster_path']}}" alt="Game Poser" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
                         style="right:-20px; bottom:-20px">
                         <div class="font-semibold text-xs flex justify-center items-center h-full text-yellow-400">
-                            {{$show['vote_average'] * 10}}%</div>
+                            {{$now['vote_average'] * 10}}%</div>
                         </div>
                     </div>
                     <div class="ml-12">
-                        <a href="{{route('movies.show', $movie['id'])}}" class="block text-lg font-semibold leading-tight hover:text-blue-500 mt-2 transition ease-in-out duration-200">{{$show['name']}}</a>
+                        <a href="{{route('movies.show', $now['id'])}}" class="block text-lg font-semibold leading-tight hover:text-blue-500 mt-2 transition ease-in-out duration-200">{{$now['title']}}</a>
                         <div class="text-gray-400 mt-1">
-                            @foreach ($show['genre_ids'] as $genre)
-                            {{$genres->get($genre) }}@if (!$loop->last).@endif
+                            @foreach ($now['genre_ids'] as $genre)
+                            {{$genres->get($genre) }}@if (!$loop->last),@endif
                             @endforeach
                         </div>
                         <p class="game-desc mt-6 text-gray-300 hidden lg:block">
-                            {{$show['overview']}}
+                            {{$now['overview']}}
                         </p>
                         <div class="mt-10 text-green-400 flex">
                             <div class="w-full lg:w-3/4">
-                                <h5>First Air Date</h5>
-                                <p class="text-gray-300">{{\carbon\carbon::parse($show['first_air_date'])->format('M d, Y')}}</p>
+                                <h5>Release date</h5>
+                                <p class="text-gray-300">{{\carbon\carbon::parse($now['release_date'])->format('M d, Y')}}</p>
                             </div>
                         </div>
                     </div>
