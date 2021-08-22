@@ -7,6 +7,8 @@
     <title>MoviesZone</title>
     {{-- style --}}
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    {{-- Livewire style--}}
+    <livewire:styles />
     {{-- Fontawesome --}}
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
@@ -23,19 +25,14 @@
                 <a href="{{route('movies.index')}}"><img class="flex-none" src="{{asset('assets/favicon-32x32.png')}}" alt="Logo"></a>
                 <ul class="flex m-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
                     <li><a href="{{route('movies.index')}}" class="hover:text-gray-400">Movies</a></li>
-                    <li><a href="#" class="hover:text-gray-400">Reviews</a></li>
+                    <li><a href="#" class="hover:text-gray-400">Series</a></li>
                     <li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>
                 </ul>
             </div>
             {{-- right nav --}}
             <div class="flex items-center mt-6 lg:mt-0">
-                <div class="relative">
-                    <input type="text" class="bg-gray-800 pl-9 text-sm rounded-full px-3 py-1 w-64
-                     focus:outline-none focus:shadow-outline" placeholder="Search...">
-                     <div class="absolute top-0 flex items-center h-full ml-2">
-                        <img class="w-5" src="{{asset('assets/search.svg')}}" alt="Search-icon">
-                     </div>
-                </div>
+                {{-- Livewire search --}}
+                <livewire:search-dropdown>
                 <div class="ml-6">
                     <a href="#"><img class="w-9" src="{{asset('assets/avatar.png')}}" alt="avatar"></a>
                 </div>
@@ -56,5 +53,9 @@
     <script>
 
     </script>
+    {{-- Livewire --}}
+    <livewire:scripts />
+    {{-- Alpin.js --}}
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>
