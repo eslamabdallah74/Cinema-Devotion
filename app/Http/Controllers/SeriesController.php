@@ -19,11 +19,19 @@ class SeriesController extends Controller
         ->get('https://api.themoviedb.org/3/tv/popular')
         ->json()['results'];
 
+        $top_rated = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/tv/top_rated')
+        ->json()['results'];
 
-        dump($series);
+        $onTheAir = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/tv/on_the_air')
+        ->json()['results'];
+
 
         return view('/series',[
-            'series' => $series,
+            'series'    => $series,
+            'top_rated' => $top_rated,
+            'onTheAir'  => $onTheAir,
 
         ]);
     }

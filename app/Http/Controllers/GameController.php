@@ -49,14 +49,18 @@ class GameController extends Controller
             return [$genre['id'] => $genre['name']];
         });
 
-        // dump($NowPlaying);
+        $upcoming = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/upcoming')
+        ->json()['results'];
+
 
         return view('index',[
             'movies'     => $movies,
             'NowPlaying' => $NowPlaying,
             'genres'     => $genres,
             'tvShows'    => $tvShows,
-            'Tvgenres'   => $Tvgenres
+            'Tvgenres'   => $Tvgenres,
+            'upcoming'   => $upcoming
         ]);
     }
 

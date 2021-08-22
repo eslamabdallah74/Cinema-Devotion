@@ -76,44 +76,24 @@
             @endforeach
         </div>
         <div class="most-anticipated mt-12 lg:mt-0 lg:w-1/4"> {{-- right section --}}
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">most anticipated</h2>
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Coming soon</h2>
             {{-- right game card--}}
             <div class="most-anticipated-container space-y-10 mt-8">
-                <div class="game flex">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                @foreach ($upcoming as $coming)
+                    @if ($loop->index < 8)
+                  <div class="game flex">
+                    <a href="{{route('movies.show', $coming['id'])}}">
+                        <img src="{{'https://image.tmdb.org/t/p/w200/'.$coming['poster_path']}}" alt="Game Poser" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
                     </a>
                     <div class="ml-4">
-                        <a href="#" class="hover:text-gray-300">Game Name</a>
-                        <div class="text-gray-400 text-sm mt-1">sept 16, 2018</div>
+                        <a href="{{route('movies.show', $coming['id'])}}" class="hover:text-gray-300">{{$coming['title']}}</a>
+                        <div class="text-gray-400 text-sm mt-1">{{$coming['release_date']}}</div>
                     </div>
                 </div>
-            </div>
-            {{-- right game card--}}
-            <div class="most-anticipated-container space-y-10 mt-8">
-                <div class="game flex">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                    <div class="ml-4">
-                        <a href="#" class="hover:text-gray-300">Game Name</a>
-                        <div class="text-gray-400 text-sm mt-1">sept 16, 2018</div>
-                    </div>
-                </div>
-            </div>
-            <div class="coming-soon pt-4 border-t mt-4 border-gray-400">
-                <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Coming soon</h2>
-            {{-- right game card--}}
-            <div class="most-anticipated-container space-y-10 mt-8">
-                <div class="game flex">
-                    <a href="#">
-                        <img src="{{asset("assets/gHolder.png")}}" alt="Game Poser" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                    <div class="ml-4">
-                        <a href="#" class="hover:text-gray-300">Game Name</a>
-                        <div class="text-gray-400 text-sm mt-1">sept 16, 2018</div>
-                    </div>
-                </div>
+                    @else
+                        @break
+                    @endif
+                @endforeach
             </div>
             </div>
         </div> {{-- end of right section --}}

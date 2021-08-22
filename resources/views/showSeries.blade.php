@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-4 md:py-16 flex flex-col md:flex-row">
             @if ($serie['poster_path'])
@@ -26,7 +25,7 @@
                 {{-- Movie Cast --}}
                 <div class="mt-12">
                     <h4 class="text-white font-semibold"> <i class="fab fa-fort-awesome text-yellow-300"></i> Featured Cast</h4>
-                    {{-- <div class="flex mt-4">
+                    <div class="flex mt-4">
                         @foreach ($serie['credits']['crew'] as $crew)
                         @if ($loop->index < 3)
                         <div class="mr-8">
@@ -36,7 +35,7 @@
                         @else
                             @break
                         @endif
-                        @endforeach --}}
+                        @endforeach
                     </div>
                 </div>
                 {{-- TRAILER WRAPPER --}}
@@ -45,7 +44,7 @@
                     @if (count($serie['videos']['results']) > 0)
                     <div class="mt-10 mb-10 text-center md:text-left m:mb-0 ">
                         <button @click="isOpen = true"
-                        {{-- href='https://www.youtube.com/embed/{{$movie['videos']['results']['0']['key']}}' --}}
+                        {{-- href='https://www.youtube.com/embed/{{$serie['videos']['results']['0']['key']}}' --}}
                         class="inline-flex
                         items-center bg-yellow-300
                         text-gray-900 rounded font-semibold px-5 py-4 hover:bg-yellow-500 transition ease-in-out duration-150">
@@ -98,6 +97,82 @@
               {{-- End of trailer Wrapper --}}
             </div>
         </div>  {{-- end container --}}
+    </div>
+                {{-- start Movie cast  --}}
+    <div class="movie-cast">
+        <div class="container mx-auto px-4 py-16">
+            <h2 class="text-4xl font-semibold">Movie Cast</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 :xl:grid-cols-6 gap-12">
+                {{-- Cast Start Card --}}
+                @foreach ($serie['credits']['cast'] as $cast)
+                @if ($loop->index < 6)
+                   @if ($cast['profile_path'])
+                <div class="game mt-8">
+                    <div class="relative inline-block">
+                        <a href="#">
+                            <img src="{{'https://image.tmdb.org/t/p/w400/'.$cast['profile_path']}}" alt="Movie Actor" class="hover:opacity-75 transition ease-in-out duration-150 w-64 md:w-96">
+                        </a>
+                    </div>
+                    <a href="#" target="_blank" class="block text-xl font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
+                       {{$cast['name']}}
+                    </a>
+                    <p class="text-gray-400 text-sm">{{$cast['character']}}</p>
+                </div>
+                 @endif
+                @else
+                    @break
+                @endif
+                @endforeach
+                 {{-- Cast End Card --}}
+            </div>
+        </div>
+    </div>
+    {{-- start images section --}}
+    <div class="images border-t border-gray-800" x-data="{isOpen: false, image: ''}">
+        <div class="container mx-auto px-4 py-16">
+            <h2 class="text-4xl font-semibold">Images</h2>
+            <div class="Shots grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 :xl:grid-cols-4 gap-12 pt-10">
+                @foreach ($serie['images']['backdrops'] as $image)
+                @if ($loop->index < 9)
+                <div class="image mt-2">
+                    <a href="#"
+                    @click.prevent="
+                    isOpen = true
+                    image  = '{{'https://image.tmdb.org/t/p/original/'.$image['file_path']}}'
+                    "
+                    >
+                        <img src="{{'https://image.tmdb.org/t/p/w400/'.$image['file_path']}}" alt="movie-shots" class="w-120">
+                    </a>
+                </div>
+                @else
+                    @break
+                @endif
+                @endforeach
+            {{-- End images --}}
+            </div>
+            {{-- start of Image model --}}
+            <div style="background-color: rgb(0, 0, 0, .5);"
+            class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto z-50 transition ease-in-out duration-300"
+            x-show="isOpen"
+            >
+                <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
+                    <div class="bg-gray-900">
+                        <div class="flex justify-end pr-4 pt-2">
+                            <button class="text-3xl loading-none hover:text-gray-300"
+                            @click="isOpen = false"
+                            @keydown.escape.window="isOpen = false"
+                            @click.away="isOpen = false"
+                            >&times;</button>
+                        </div>
+                        <div class="model-body px-8 py-8">
+                            {{-- Model Content --}}
+                            <img :src="image" alt="poster">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- End of image model --}}
+        </div>
     </div>
 
 @endsection
