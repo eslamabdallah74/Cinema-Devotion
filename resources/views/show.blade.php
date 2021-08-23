@@ -133,6 +133,7 @@
         </div>
     </div>
     {{-- start images section --}}
+    @if ($movie['images']['backdrops'])
     <div class="images border-t border-gray-800" x-data="{isOpen: false, image: ''}">
         <div class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-semibold">Images</h2>
@@ -178,6 +179,7 @@
             </div>
             {{-- End of image model --}}
         </div>
+        @endif
     </div>
 
 @endsection

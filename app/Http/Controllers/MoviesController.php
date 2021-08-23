@@ -13,7 +13,7 @@ use MarcReichel\IGDBLaravel\Models\Cover;
 use MarcReichel\IGDBLaravel\Models\Screenshots;
 
 
-class GameController extends Controller
+class MoviesController extends Controller
 {
     /**
      * Display a listing of the resource.
