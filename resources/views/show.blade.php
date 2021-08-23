@@ -114,11 +114,11 @@
                    @if ($cast['profile_path'])
                 <div class="game mt-8">
                     <div class="relative inline-block">
-                        <a href="#">
+                        <a href="{{route('actor.show', $cast['id'])}}">
                             <img src="{{'https://image.tmdb.org/t/p/w400/'.$cast['profile_path']}}" alt="Movie Actor" class="hover:opacity-75 transition ease-in-out duration-150 w-64 md:w-96">
                         </a>
                     </div>
-                    <a href="#" target="_blank" class="block text-xl font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
+                    <a href="{{route('actor.show', $cast['id'])}}" class="block text-xl font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
                        {{$cast['name']}}
                     </a>
                     <p class="text-gray-400 text-sm">{{$cast['character']}}</p>
