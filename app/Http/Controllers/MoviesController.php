@@ -97,10 +97,14 @@ class MoviesController extends Controller
         ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
         ->json();
 
+        $similar = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/'.$id.'/similar')
+        ->json('results');
 
         return view('show',
         [
-         'movie' => $movie,
+         'movie'    => $movie,
+         'similar'  =>$similar
         ]
         );
     }

@@ -87,25 +87,25 @@
         <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 :xl:grid-cols-6 gap-12 pb-10">
             {{-- ^^^^^^^^ Grid System ^^^^^^^ --}}
             {{-- ˅˅˅˅˅˅˅ Childerns ˅˅˅˅˅ --}}
-            @foreach ($movies['cast'] as $actorMovie )
+            @foreach ($movies['cast'] as $similarMovie )
                 @if ($loop->index <= 50)
-                    @if ($actorMovie['poster_path'])
+                    @if ($similarMovie['poster_path'])
                     <div class="game mt-8">
                         <div class="relative inline-block">
-                            <a href="{{route('movies.show', $actorMovie['id'])}}">
-                                <img src="{{'https://image.tmdb.org/t/p/w500/'.$actorMovie['poster_path']}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
+                            <a href="{{route('movies.show', $similarMovie['id'])}}">
+                                <img src="{{'https://image.tmdb.org/t/p/w500/'.$similarMovie['poster_path']}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
                             </a>
-                            @if ($actorMovie['vote_average'] )
+                            @if ($similarMovie['vote_average'] )
                             <div class="absolute bottom-0 right-0 w-14 h-14 bg-gray-800 rounded-full"
                             style="right:-20px; bottom:-20px">
                                 <div class="font-semibold text-xs flex justify-center items-center h-full text-yellow-400">
-                                    {{$actorMovie['vote_average'] * 10}}%</div>
+                                    {{$similarMovie['vote_average'] * 10}}%</div>
                             </div>
                             @endif
 
                         </div>
-                        <a href="{{route('movies.show', $actorMovie['id'])}}" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
-                            {{$actorMovie['title']}}
+                        <a href="{{route('movies.show', $similarMovie['id'])}}" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
+                            {{$similarMovie['title']}}
                         </a>
                     </div> {{-- End of the movie --}}
                     @endif

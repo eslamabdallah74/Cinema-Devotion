@@ -76,7 +76,7 @@
             @endforeach
         </div>
         <div class="most-anticipated mt-12 lg:mt-0 lg:w-1/4"> {{-- right section --}}
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Coming soon</h2>
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold">upcoming</h2>
             {{-- right game card--}}
             <div class="most-anticipated-container space-y-10 mt-8">
                 @foreach ($upcoming as $coming)

@@ -70,10 +70,15 @@ class SeriesController extends Controller
         ->get('https://api.themoviedb.org/3/tv/'.$id.'?append_to_response=credits,videos,images')
         ->json();
 
+        $similar = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/tv/'.$id.'/similar')
+        ->json('results');
+
 
         return view('/showSeries',
         [
-         'serie' => $serie,
+         'serie'    => $serie,
+         'similar'  => $similar
         ]
         );
     }

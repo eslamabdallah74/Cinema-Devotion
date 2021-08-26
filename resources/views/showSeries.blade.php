@@ -173,6 +173,41 @@
             </div>
             {{-- End of image model --}}
         </div>
-    </div>
+            {{-- start of similar movies --}}
+    <div class="border-b border-gray-600"></div>
+    <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-semibold text-center pt-4 uppercase">similar series</h2>
+    <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 :xl:grid-cols-6 gap-12 pb-10">
+        {{-- ^^^^^^^^ Grid System ^^^^^^^ --}}
+        {{-- ˅˅˅˅˅˅˅ Childerns ˅˅˅˅˅ --}}
+        @foreach ($similar as $similartv )
+
+                @if ($similartv['poster_path'])
+                <div class="game mt-8">
+                    <div class="relative inline-block">
+                        <a href="{{route('showSeries.show', $similartv['id'])}}">
+                            <img src="{{'https://image.tmdb.org/t/p/w500/'.$similartv['poster_path']}}" alt="Game Poser" class="hover:opacity-75 transition ease-in-out duration-150">
+                        </a>
+                        @if ($similartv['vote_average'] )
+                        <div class="absolute bottom-0 right-0 w-14 h-14 bg-gray-800 rounded-full"
+                        style="right:-20px; bottom:-20px">
+                            <div class="font-semibold text-xs flex justify-center items-center h-full text-yellow-400">
+                                {{$similartv['vote_average'] * 10}}%</div>
+                        </div>
+                        @endif
+
+                    </div>
+                    <a href="{{route('showSeries.show', $similartv['id'])}}" class="block text-base font-semibold leading-tight hover:text-blue-500 mt-4 transition ease-in-out duration-200">
+                        {{$similartv['name']}}
+                        <p class="text-gray-300">{{\carbon\carbon::parse($similartv['first_air_date'])->format('M d, Y')  }}</p>
+
+                    </a>
+                </div> {{-- End of the movie --}}
+                @endif
+
+        @endforeach
+      </div>
+    </div> {{-- end of similar Movies --}}
+    </div> {{-- end of container --}}
 
 @endsection
