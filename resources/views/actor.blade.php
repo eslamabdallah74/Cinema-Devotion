@@ -83,7 +83,8 @@
         @if ($movies)
         <div class="border-b border-gray-600"></div>
         <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-semibold text-center pt-4">Other Movies</h2>
+        <h2 class="text-4xl font-semibold text-center pt-4">Other Movies for
+             <div class="text-blue-400"> {{$actor['name']}}</div></h2>
         <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 :xl:grid-cols-6 gap-12 pb-10">
             {{-- ^^^^^^^^ Grid System ^^^^^^^ --}}
             {{-- ˅˅˅˅˅˅˅ Childerns ˅˅˅˅˅ --}}

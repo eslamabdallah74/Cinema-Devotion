@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FavMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 // to get all kind of endpoint
 use MarcReichel\IGDBLaravel\Builder as IGDB;
 
@@ -22,6 +24,10 @@ class MoviesController extends Controller
      */
     public function index()
     {
+
+        dump(Session::get('FavMovie'));
+        // session()->push('Name', 'Eslam abdallah');
+        // dd(Session::get('FavMovie'));
         // HTTP
         $movies = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/movie/popular')
@@ -53,6 +59,7 @@ class MoviesController extends Controller
         ->get('https://api.themoviedb.org/3/movie/upcoming')
         ->json()['results'];
 
+        // dd(Session::all());
 
         return view('index',[
             'movies'     => $movies,
@@ -80,9 +87,25 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+
+        $findMovie = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
+        ->json();
+
+        $oldFav    = Session::has('FavMovie') ? Session::get('FavMovie') : null;
+
+        $FavMovie  = new FavMovie($oldFav);
+
+        $FavMovie->add($findMovie,$findMovie['id']);
+
+        $request->session()->put('FavMovie',$FavMovie);
+
+        // Session::forget('FavMovie');
+        // dd($request->session()->all());
+
+        return redirect()->route('movies.index');
     }
 
     /**
