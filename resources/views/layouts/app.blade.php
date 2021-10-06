@@ -20,7 +20,7 @@
 
     {{-- start page --}}
     <header class="border-b border-gray-600">
-        <nav class="container z-10 flex flex-col items-center justify-between px-4 py-6 mx-auto bg-gray-900 lg:flex-row ">
+        <nav class="container fixed z-10 flex flex-col items-center justify-between min-w-full p-5 bg-gray-600 lg:flex-row sm:p-0">
             {{-- Left nav --}}
             <div class="flex flex-col items-center lg:flex-row">
                 <a href="{{route('movies.index')}}"><img class="flex-none" src="{{asset('assets/favicon-32x32.png')}}" alt="Logo"></a>
@@ -38,11 +38,12 @@
                     <a href="#"><img class="w-9" src="{{asset('assets/avatar.png')}}" alt="avatar"></a>
                 </div> -->
                 <div class="ml-6">
-                   <a href="#">
-                       @if (Session::has('FavMovie'))
-                            <span class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl">
-                            <i class="text-2xl text-red-600 fas fa-heart"></i>
-                            {{ Session::get('FavMovie')->totalQty }} </span>
+                   <a href="#"  class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl sm:hidden">
+                   <i class="text-2xl text-red-600 fas fa-heart"></i>
+                        <span id="QtyCount">
+                        @if (Session::has('FavMovie'))
+                            {{ Session::get('FavMovie')->totalQty }}
+                        </span>
                        @endif
                    </a>
                 </div>

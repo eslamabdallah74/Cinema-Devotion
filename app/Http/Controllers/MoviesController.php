@@ -25,7 +25,7 @@ class MoviesController extends Controller
     public function index()
     {
 
-        dump(Session::get('FavMovie'));
+        // dump(Session::get('FavMovie'));
         // session()->push('Name', 'Eslam abdallah');
         // dd(Session::get('FavMovie'));
         // HTTP
@@ -100,8 +100,11 @@ class MoviesController extends Controller
 
         $FavMovie->add($findMovie,$findMovie['id']);
 
-        $request->session()->put('FavMovie',$FavMovie);
+        $StoredMovie =    $request->session()->put('FavMovie',$FavMovie);
 
+        $Qty  =   Session::get('FavMovie')->totalQty;
+
+        return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
         // Session::forget('FavMovie');
         // dd($request->session()->all());
 

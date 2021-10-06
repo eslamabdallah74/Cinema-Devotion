@@ -11,8 +11,11 @@
                 <div class="relative inline-block">
                     <a href="{{route('movies.show', $movie['id'])}}" class="relative">
                         <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
-                        <div class="absolute top-0">
-                                <a href="{{route('Movies.Add', ['id' => $movie['id'] ])}}" class="btn btn-danger"> Add </a>
+                        <div class="absolute bottom-0 left-0" id="TEST" data-id="{{$movie['id']}}">
+                                    <!-- Session Add to favorite -->
+                                <a  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                                     Add to favorite <i class="p-1 text-red-600 far fa-heart fa-1x"></i>
+                                </a>
                         </div>
                     </a>
                     @if ($movie['vote_average'] )
@@ -107,7 +110,35 @@
 @section('js')
     <script>
         $(document).ready(function(){
-            console.log('Ready');
+            // targted button
+            $('body').on('click', "#TEST" , function(event){
+                event.preventDefault();
+                let id  = $(this).data('id');
+                var url = "{{ route('Movies.Add', ':id') }}";
+                url     =   url.replace(':id',id);
+
+                // console.log(url);
+            $.ajaxSetup({
+                headers:{
+                    "_token": "{{ csrf_token() }}"
+                }
+            }),
+            $.ajax({
+            method:"GET",
+            url: url,
+            success: function (status) {
+                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
+                        document.getElementById("TEST").removeChild(elem);
+                },
+                error: function (XMLHttpRequest) {
+                    if (XMLHttpRequest.status == 401) {
+                        // unauthorized
+                        window.location.href = '/login';
+                    }
+                }
+            // Button end
+            });
         });
+    });
     </script>
 @endsection
