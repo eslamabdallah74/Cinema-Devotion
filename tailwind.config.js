@@ -7,18 +7,7 @@ module.exports = {
         '96' : '24rem',
       },
     },
-    screens: {
-        'sm'    : '426px',
 
-        'tablet': '640px',
-        // => @media (min-width: 640px) { ... }
-
-        'laptop': '1024px',
-        // => @media (min-width: 1024px) { ... }
-
-        'desktop': '1280px',
-        // => @media (min-width: 1280px) { ... }
-      },
     spinner: (theme) => ({
         default: {
           color: '#dae1e7', // color you want to make the spinner

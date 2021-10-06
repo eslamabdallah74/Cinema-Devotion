@@ -10,8 +10,8 @@
             <div class="mt-8 game">
                 <div class="relative inline-block">
                     <a href="{{route('movies.show', $movie['id'])}}" class="relative">
-                        <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
-                        <div class="absolute bottom-0 left-0" id="TEST" data-id="{{$movie['id']}}">
+                        <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">  
+                        <div class="absolute bottom-0 left-0 TEST" id="TEST" data-id="{{$movie['id']}}">
                                     <!-- Session Add to favorite -->
                                 <a  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
                                      Add to favorite <i class="p-1 text-red-600 far fa-heart fa-1x"></i>
@@ -111,10 +111,11 @@
     <script>
         $(document).ready(function(){
             // targted button
-            $('body').on('click', "#TEST" , function(event){
+            $('body').on('click', ".TEST" , function(event){
                 event.preventDefault();
                 let id  = $(this).data('id');
                 var url = "{{ route('Movies.Add', ':id') }}";
+                var remove = $(this);
                 url     =   url.replace(':id',id);
 
                 // console.log(url);
@@ -128,7 +129,7 @@
             url: url,
             success: function (status) {
                         document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
-                        document.getElementById("TEST").removeChild(elem);
+                        remove.remove();
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.status == 401) {
