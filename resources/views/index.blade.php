@@ -10,11 +10,11 @@
             <div class="mt-8 game">
                 <div class="relative inline-block">
                     <a href="{{route('movies.show', $movie['id'])}}" class="relative">
-                        <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">  
-                        <div class="absolute bottom-0 left-0 TEST" id="TEST" data-id="{{$movie['id']}}">
+                        <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
+                        <div class="absolute top-0 left-0 TEST" id="TEST" data-id="{{$movie['id']}}">
                                     <!-- Session Add to favorite -->
-                                <a  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
-                                     Add to favorite <i class="p-1 text-red-600 far fa-heart fa-1x"></i>
+                                <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                                    <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
                                 </a>
                         </div>
                     </a>
@@ -42,12 +42,18 @@
 
      {{-- Second Section [recently Reviewd and Coming Soon] --}}
     <div class="flex flex-col my-10 lg:flex-row">
-        <div class="w-full mr-0 recently-reviewd lg:w-3/4 lg:mr-32">          {{-- left Section --}}
+        <div class="w-full mr-0 recently-reviewd lg:w-3/4 lg:mr-32">         {{-- left Section --}}
             <h2 class="font-semibold tracking-wide text-blue-500 uppercase">top rated </h2>
             @foreach ($NowPlaying as $now)
             <div class="mt-8 space-y-12 recently-reviewd-container">
                 {{-- Game Card --}}
-                <div class="flex p-6 bg-gray-800 rounded-lg shadow-md game">
+                <div class="relative flex p-6 bg-gray-800 rounded-lg shadow-md game">
+                    <!-- Session Add to favorite -->
+                        <div class="absolute right-0 top-2 TEST" id="TEST" data-id="{{$now['id']}}">
+                              <a id="heart"   class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                                <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
+                            </a>
+                        </div>
                     {{-- Card image --}}
                     <div class="relative flex-none">
                         <a href="{{route('movies.show', $now['id'])}}">
@@ -115,7 +121,7 @@
                 event.preventDefault();
                 let id  = $(this).data('id');
                 var url = "{{ route('Movies.Add', ':id') }}";
-                var remove = $(this);
+                var favButton = $(this);
                 url     =   url.replace(':id',id);
 
                 // console.log(url);
@@ -129,7 +135,7 @@
             url: url,
             success: function (status) {
                         document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
-                        remove.remove();
+                        favButton.remove();
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.status == 401) {

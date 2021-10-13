@@ -89,26 +89,25 @@ class MoviesController extends Controller
      */
     public function store(Request $request, $id)
     {
+            $findMovie = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
+            ->json();
 
-        $findMovie = Http::withToken(config('services.tmdb.token'))
-        ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
-        ->json();
+            $oldFav    = Session::has('FavMovie') ? Session::get('FavMovie') : null;
 
-        $oldFav    = Session::has('FavMovie') ? Session::get('FavMovie') : null;
+            $FavMovie  = new FavMovie($oldFav);
 
-        $FavMovie  = new FavMovie($oldFav);
+            $FavMovie->add($findMovie, $findMovie['id']);
 
-        $FavMovie->add($findMovie,$findMovie['id']);
+            $StoredMovie =    $request->session()->put('FavMovie', $FavMovie);
 
-        $StoredMovie =    $request->session()->put('FavMovie',$FavMovie);
+            $Qty  =   Session::get('FavMovie')->totalQty;
 
-        $Qty  =   Session::get('FavMovie')->totalQty;
+            return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
 
-        return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
         // Session::forget('FavMovie');
         // dd($request->session()->all());
-
-        return redirect()->route('movies.index');
+        // return redirect()->route('movies.index');
     }
 
     /**

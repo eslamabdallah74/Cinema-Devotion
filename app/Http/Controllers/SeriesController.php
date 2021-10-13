@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
+use App\Models\FavMovie;
 
 class SeriesController extends Controller
 {
@@ -26,7 +28,6 @@ class SeriesController extends Controller
         $onTheAir = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/tv/on_the_air')
         ->json()['results'];
-
 
         return view('/series',[
             'series'    => $series,
@@ -52,9 +53,9 @@ class SeriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+
     }
 
     /**

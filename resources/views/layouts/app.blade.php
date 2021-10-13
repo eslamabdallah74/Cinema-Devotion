@@ -38,7 +38,7 @@
                     <a href="#"><img class="w-9" src="{{asset('assets/avatar.png')}}" alt="avatar"></a>
                 </div> -->
                 <div class="ml-6">
-                   <a href="#"  class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl">
+                   <a href="{{route('favorite')}}"  class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl">
                    <i class="text-2xl text-red-600 fas fa-heart"></i>
                         <span id="QtyCount">
                         @if (Session::has('FavMovie'))

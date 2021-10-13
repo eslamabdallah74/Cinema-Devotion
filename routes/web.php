@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 // add movies to favorite
 Route::get('/add-to-fav/{id}',[App\Http\Controllers\MoviesController::class,'store'])->name('Movies.Add');
+Route::get('/add-to-fav/tv/{id}',[App\Http\Controllers\SeriesController::class,'store'])->name('series.Add');
+
 
 Route::get('/', [App\Http\Controllers\MoviesController::class,'index'])->name('movies.index');
 Route::get('/movies/{movie}', [App\Http\Controllers\MoviesController::class,'show'])->name('movies.show');
@@ -24,3 +26,4 @@ Route::get('/showSeries/{serie}', [App\Http\Controllers\SeriesController::class,
 
 Route::get('/actor/{actor}', [App\Http\Controllers\ActorController::class,'show'])->name('actor.show');
 
+Route::get('/favorite',[App\Http\Controllers\FavoriteController::class,'index'])->name('favorite');
