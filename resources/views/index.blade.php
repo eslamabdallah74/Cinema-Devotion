@@ -11,7 +11,7 @@
                 <div class="relative inline-block">
                     <a href="{{route('movies.show', $movie['id'])}}" class="relative">
                         <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
-                        <div class="absolute top-0 left-0 TEST" id="TEST" data-id="{{$movie['id']}}">
+                        <div class="absolute top-0 left-0 FavMovie" id="TEST" data-id="{{$movie['id']}}">
                                     <!-- Session Add to favorite -->
                                 <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
                                     <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
@@ -49,7 +49,7 @@
                 {{-- Game Card --}}
                 <div class="relative flex p-6 bg-gray-800 rounded-lg shadow-md game">
                     <!-- Session Add to favorite -->
-                        <div class="absolute right-0 top-2 TEST" id="TEST" data-id="{{$now['id']}}">
+                        <div class="absolute right-0 cursor-pointer top-2 FavMovie" id="TEST" data-id="{{$now['id']}}">
                               <a id="heart"   class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
                                 <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
                             </a>
@@ -117,7 +117,7 @@
     <script>
         $(document).ready(function(){
             // targted button
-            $('body').on('click', ".TEST" , function(event){
+            $('body').on('click', ".FavMovie" , function(event){
                 event.preventDefault();
                 let id  = $(this).data('id');
                 var url = "{{ route('Movies.Add', ':id') }}";
@@ -134,13 +134,13 @@
             method:"GET",
             url: url,
             success: function (status) {
-                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
                         favButton.remove();
+                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.status == 401) {
                         // unauthorized
-                        window.location.href = '/login';
+                        window.location.href = '/';
                     }
                 }
             // Button end

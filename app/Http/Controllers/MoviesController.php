@@ -22,6 +22,7 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
 
@@ -29,7 +30,6 @@ class MoviesController extends Controller
         // session()->push('Name', 'Eslam abdallah');
         // dd(Session::get('FavMovie'));
         // HTTP
-
         $movies = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/movie/popular')
         ->json()['results'];
@@ -101,7 +101,12 @@ class MoviesController extends Controller
 
             $StoredMovie =    $request->session()->put('FavMovie', $FavMovie);
 
-            $Qty  =   Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty ;
+            if(Session::has('FavSeries'))
+            {
+                $Qty  =   Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty ;
+            } else {
+                $Qty  =   Session::get('FavMovie')->totalQty;
+            }
 
             return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
 

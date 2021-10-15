@@ -14,7 +14,7 @@
                 </span>
                 <!-- Session Add to favorite -->
                 <span class="absolute top-0 right-0">
-                    <div class="TEST" id="TEST" data-id="{{$movie['id']}}">
+                    <div class="FavMovie" id="TEST" data-id="{{$movie['id']}}">
                         <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
                           Add To Favorite  <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
                         </a>
@@ -227,7 +227,7 @@
     <script>
         $(document).ready(function(){
             // targted button
-            $('body').on('click', ".TEST" , function(event){
+            $('body').on('click', ".FavMovie" , function(event){
                 event.preventDefault();
                 let id  = $(this).data('id');
                 var url = "{{ route('Movies.Add', ':id') }}";
@@ -244,8 +244,8 @@
             method:"GET",
             url: url,
             success: function (status) {
-                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
                         favButton.remove();
+                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.status == 401) {

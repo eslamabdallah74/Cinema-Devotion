@@ -30,7 +30,6 @@ class SeriesController extends Controller
         ->get('https://api.themoviedb.org/3/tv/on_the_air')
         ->json()['results'];
 
-        dump(Session::all());
 
 
         return view('/series',[
@@ -70,8 +69,13 @@ class SeriesController extends Controller
         $FavSeries->add($serie, $serie['id']);
 
         $StoredMovie =    $request->session()->put('FavSeries', $FavSeries);
-
-        $Qty  =   Session::get('FavSeries')->totalQty + Session::get('FavMovie')->totalQty;
+        
+        if(Session::has('FavMovie'))
+        {
+            $Qty  =   Session::get('FavSeries')->totalQty + Session::get('FavMovie')->totalQty;
+        } else {
+            $Qty  =   Session::get('FavSeries')->totalQty;
+        }
 
         return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
     }

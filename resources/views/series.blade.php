@@ -13,11 +13,11 @@
                         <img src="{{'https://image.tmdb.org/t/p/w500/'.$serie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
                     </a>
                  <!-- Session Add to favorite -->
-                    <div class="absolute top-0 left-0 TEST" id="TEST" data-id="{{$serie['id']}}">
-                                <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
-                                    <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
-                                </a>
-                        </div>
+                    <div class="absolute top-0 left-0 Series" id="TEST" data-id="{{$serie['id']}}">
+                        <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                            <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
+                        </a>
+                    </div>
                     @if ($serie['vote_average'] )
                     <div class="absolute bottom-0 right-0 bg-gray-800 rounded-full w-14 h-14"
                     style="right:-20px; bottom:-20px">
@@ -42,7 +42,13 @@
         @foreach ($top_rated as $now)
         <div class="mt-8 space-y-12 recently-reviewd-container">
             {{-- Game Card --}}
-            <div class="flex p-6 bg-gray-800 rounded-lg shadow-md game">
+            <div class="relative flex p-6 bg-gray-800 rounded-lg shadow-md game">
+                 <!-- Session Add to favorite -->
+                <div class="absolute right-0 top-2 Series" id="TEST" data-id="{{$now['id']}}">
+                        <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                            <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
+                        </a>
+                </div>
                 {{-- Card image --}}
                 <div class="relative flex-none">
                     <a href="{{route('showSeries.show', $now['id'])}}">
@@ -96,7 +102,7 @@
     <script>
         $(document).ready(function(){
             // targted button
-            $('body').on('click', ".TEST" , function(event){
+            $('body').on('click', ".Series" , function(event){
                 event.preventDefault();
                 let id  = $(this).data('id');
                 var url = "{{ route('series.Add', ':id') }}";
@@ -113,13 +119,13 @@
             method:"GET",
             url: url,
             success: function (status) {
-                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
                         favButton.remove();
+                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.status == 401) {
                         // unauthorized
-                        window.location.href = '/login';
+                        window.location.href = '/';
                     }
                 }
             // Button end
