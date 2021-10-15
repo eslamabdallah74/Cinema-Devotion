@@ -40,11 +40,22 @@
                 <div class="ml-6">
                    <a href="{{route('favorite')}}"  class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl">
                    <i class="text-2xl text-red-600 fas fa-heart"></i>
-                        <span id="QtyCount">
-                        @if (Session::has('FavMovie'))
-                            {{ Session::get('FavMovie')->totalQty }}
-                        </span>
-                       @endif
+                   <!-- if session has both movie and series in favorite -->
+                    @if (Session::has('FavMovie') && Session::has('FavSeries'))
+                    <span id="QtyCount">
+                            {{ Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty }}
+                    </span>
+                    <!-- if session has movie in favorite -->
+                    @elseif (Session::has('FavMovie'))
+                    <span id="QtyCount">
+                            {{ Session::get('FavMovie')->totalQty}}
+                    </span>
+                    <!-- if session has series in favorite -->
+                    @elseif (Session::has('FavSeries'))
+                    <span id="QtyCount">
+                            {{Session::get('FavSeries')->totalQty}}
+                    </span>
+                    @endif
                    </a>
                 </div>
             </div>

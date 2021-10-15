@@ -12,6 +12,12 @@
                     <a href="{{route('showSeries.show', $serie['id'])}}">
                         <img src="{{'https://image.tmdb.org/t/p/w500/'.$serie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
                     </a>
+                 <!-- Session Add to favorite -->
+                    <div class="absolute top-0 left-0 TEST" id="TEST" data-id="{{$serie['id']}}">
+                                <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                                    <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
+                                </a>
+                        </div>
                     @if ($serie['vote_average'] )
                     <div class="absolute bottom-0 right-0 bg-gray-800 rounded-full w-14 h-14"
                     style="right:-20px; bottom:-20px">
@@ -85,4 +91,40 @@
             @endforeach
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function(){
+            // targted button
+            $('body').on('click', ".TEST" , function(event){
+                event.preventDefault();
+                let id  = $(this).data('id');
+                var url = "{{ route('series.Add', ':id') }}";
+                var favButton = $(this);
+                url     =   url.replace(':id',id);
+
+                // console.log(url);
+            $.ajaxSetup({
+                headers:{
+                    "_token": "{{ csrf_token() }}"
+                }
+            }),
+            $.ajax({
+            method:"GET",
+            url: url,
+            success: function (status) {
+                        document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
+                        favButton.remove();
+                },
+                error: function (XMLHttpRequest) {
+                    if (XMLHttpRequest.status == 401) {
+                        // unauthorized
+                        window.location.href = '/login';
+                    }
+                }
+            // Button end
+            });
+        });
+    });
+    </script>
 @endsection

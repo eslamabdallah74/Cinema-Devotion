@@ -29,10 +29,10 @@ class MoviesController extends Controller
         // session()->push('Name', 'Eslam abdallah');
         // dd(Session::get('FavMovie'));
         // HTTP
+
         $movies = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/movie/popular')
         ->json()['results'];
-
 
         $NowPlaying = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/movie/top_rated')
@@ -101,7 +101,7 @@ class MoviesController extends Controller
 
             $StoredMovie =    $request->session()->put('FavMovie', $FavMovie);
 
-            $Qty  =   Session::get('FavMovie')->totalQty;
+            $Qty  =   Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty ;
 
             return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
 

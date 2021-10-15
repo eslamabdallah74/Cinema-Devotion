@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use App\Models\FavMovie;
+use App\Models\FavSeries;
 
 class SeriesController extends Controller
 {
@@ -28,6 +29,9 @@ class SeriesController extends Controller
         $onTheAir = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/tv/on_the_air')
         ->json()['results'];
+
+        dump(Session::all());
+
 
         return view('/series',[
             'series'    => $series,
@@ -55,7 +59,21 @@ class SeriesController extends Controller
      */
     public function store(Request $request,$id)
     {
+        $serie = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/tv/'.$id.'?append_to_response=credits,videos,images')
+        ->json();
 
+        $oldFav    = Session::has('FavSeries') ? Session::get('FavSeries') : null;
+
+        $FavSeries  = new FavSeries($oldFav);
+
+        $FavSeries->add($serie, $serie['id']);
+
+        $StoredMovie =    $request->session()->put('FavSeries', $FavSeries);
+
+        $Qty  =   Session::get('FavSeries')->totalQty + Session::get('FavMovie')->totalQty;
+
+        return response()->json([$StoredMovie => true,'Qty'=>$Qty]);
     }
 
     /**
