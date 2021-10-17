@@ -22,75 +22,75 @@
 
     {{-- start page --}}
     <header class="border-b border-gray-600 ">
-    <nav class="fixed z-10 w-full navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-        <a href="{{route('movies.index')}}"><img class="flex-none w-16 h-16 navbar-brand" src="{{asset('assets/logo.png')}}" alt="Logo"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="mb-2 navbar-nav me-auto mb-lg-0 text-gray-50">
-        <li class="mr-10 nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Cinema Devotion</a>
-        </li>
-        <li class="nav-item">
-             <a href="{{route('movies.index')}}" class="nav-link">Movies</a>
-        </li>
-        <li class="nav-item">
-             <a href="{{route('series.index')}}" class="nav-link">Series</a>
-        </li>
-        <li class="md:hidden"><a href="{{route('favorite')}}" class="nav-link">favorite
-                        (
-                        <!-- if session has both movie and series in favorite -->
-                        @if (Session::has('FavMovie') && Session::has('FavSeries'))
-                        <span id="QtyCountPhone">
-                                {{ Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty }}
-                        </span>
-                        <!-- if session has movie in favorite -->
-                        @elseif (Session::has('FavMovie'))
-                        <span id="QtyCountPhone">
-                                {{ Session::get('FavMovie')->totalQty}}
-                        </span>
-                        <!-- if session has series in favorite -->
-                        @elseif (Session::has('FavSeries'))
-                        <span id="QtyCountPhone">
-                                {{Session::get('FavSeries')->totalQty}}
-                        </span>
-                        @endif
-                        )
-                    </a></li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Comming Soon</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-         <livewire:search-dropdown>
-      </form>
-        <!-- Favorite -->
-        <div class="hidden ml-6 md:block">
-        <a href="{{route('favorite')}}"  class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl">
-        <i class="text-2xl text-red-600 fas fa-heart"></i>
-        <!-- if session has both movie and series in favorite -->
-        @if (Session::has('FavMovie') && Session::has('FavSeries'))
-        <span id="QtyCount">
-                {{ Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty }}
-        </span>
-        <!-- if session has movie in favorite -->
-        @elseif (Session::has('FavMovie'))
-        <span id="QtyCount">
-                {{ Session::get('FavMovie')->totalQty}}
-        </span>
-        <!-- if session has series in favorite -->
-        @elseif (Session::has('FavSeries'))
-        <span id="QtyCount">
-                {{Session::get('FavSeries')->totalQty}}
-        </span>
-        @endif
-        </a>
-    </div>
-    </div>
-  </div>
-</nav>
+        <nav class="fixed z-10 w-full p-0 navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="p-3 bg-gray-800 md:p-1 container-fluid text">
+                    <a href="{{route('movies.index')}}"><img class="flex-none w-16 h-16 navbar-brand" src="{{asset('assets/logo.png')}}" alt="Logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="mb-2 navbar-nav me-auto mb-lg-0 text-gray-50">
+                    <li class="mr-10 nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Cinema Devotion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('movies.index')}}" class="nav-link">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('series.index')}}" class="nav-link">Series</a>
+                    </li>
+                    <li class="md:hidden"><a href="{{route('favorite')}}" class="nav-link">favorite
+                                    (
+                                    <!-- if session has both movie and series in favorite -->
+                                    @if (Session::has('FavMovie') && Session::has('FavSeries'))
+                                    <span id="QtyCountPhone">
+                                            {{ Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty }}
+                                    </span>
+                                    <!-- if session has movie in favorite -->
+                                    @elseif (Session::has('FavMovie'))
+                                    <span id="QtyCountPhone">
+                                            {{ Session::get('FavMovie')->totalQty}}
+                                    </span>
+                                    <!-- if session has series in favorite -->
+                                    @elseif (Session::has('FavSeries'))
+                                    <span id="QtyCountPhone">
+                                            {{Session::get('FavSeries')->totalQty}}
+                                    </span>
+                                    @endif
+                                    )
+                                </a></li>
+                    <li class="nav-item">
+                    <a class="nav-link disabled">Comming Soon</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <livewire:search-dropdown>
+                </form>
+                    <!-- Favorite -->
+                    <div class="hidden ml-6 md:block">
+                    <a href="{{route('favorite')}}"  class="p-3 mr-2 text-red-600 bg-gray-200 rounded-xl">
+                    <i class="text-2xl text-red-600 fas fa-heart"></i>
+                    <!-- if session has both movie and series in favorite -->
+                    @if (Session::has('FavMovie') && Session::has('FavSeries'))
+                    <span id="QtyCount">
+                            {{ Session::get('FavMovie')->totalQty + Session::get('FavSeries')->totalQty }}
+                    </span>
+                    <!-- if session has movie in favorite -->
+                    @elseif (Session::has('FavMovie'))
+                    <span id="QtyCount">
+                            {{ Session::get('FavMovie')->totalQty}}
+                    </span>
+                    <!-- if session has series in favorite -->
+                    @elseif (Session::has('FavSeries'))
+                    <span id="QtyCount">
+                            {{Session::get('FavSeries')->totalQty}}
+                    </span>
+                    @endif
+                    </a>
+                </div>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <main class="py-8">

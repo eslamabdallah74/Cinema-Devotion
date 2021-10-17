@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mt-16 border-b border-gray-800 movie-info">
+    <div class="mt-20 border-b border-gray-800 movie-info">
         <div class="container flex flex-col px-4 mx-auto md:py-16 md:flex-row">
             @if ($serie['poster_path'])
             <img src="{{'https://image.tmdb.org/t/p/w400/'.$serie['poster_path']}}" class="w-96" alt="Movie Poser">
