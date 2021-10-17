@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container px-4 mx-auto">
+    <div class="container px-4 mx-auto mt-20">
         <h2 class="font-semibold tracking-wide text-blue-500 uppercase">popular Series</h2>
         <div class="grid grid-cols-1 gap-12 pb-10 text-sm border-b border-gray-800 popular-games md:grid-cols-2 lg:grid-cols-4 :xl:grid-cols-6">
             {{-- ^^^^^^^^ Grid System ^^^^^^^ --}}
@@ -14,8 +14,8 @@
                     </a>
                  <!-- Session Add to favorite -->
                     <div class="absolute top-0 left-0 Series" id="TEST" data-id="{{$serie['id']}}">
-                        <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
-                            <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
+                        <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 md:rounded-t-lg btn btn-danger">
+                            <i class="p-5 text-red-600 md:p-1 fas fa-heart fa-1x"></i>
                         </a>
                     </div>
                     @if ($serie['vote_average'] )

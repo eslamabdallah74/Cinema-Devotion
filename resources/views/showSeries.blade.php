@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="border-b border-gray-800 movie-info">
+    <div class="mt-16 border-b border-gray-800 movie-info">
         <div class="container flex flex-col px-4 mx-auto md:py-16 md:flex-row">
             @if ($serie['poster_path'])
             <img src="{{'https://image.tmdb.org/t/p/w400/'.$serie['poster_path']}}" class="w-96" alt="Movie Poser">
@@ -13,8 +13,8 @@
                    {{$serie['name']}}
                 </span>
                 <!-- Session Add to favorite -->
-                <span class="absolute top-0 right-0">
-                    <div class="FavSeries" id="TEST" data-id="{{$serie['id']}}">
+                <span class="top-0 right-0 md:absolute">
+                    <div class="my-5 FavSeries md:my-0" id="TEST" data-id="{{$serie['id']}}">
                         <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
                           Add To Favorite  <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
                         </a>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container px-4 mx-auto">
+    <div class="container px-4 mx-auto mt-20">
         <h2 class="font-semibold tracking-wide text-blue-500 uppercase">Popular Movies</h2>
         <div class="grid grid-cols-1 gap-12 pb-10 text-sm border-b border-gray-800 popular-games md:grid-cols-2 lg:grid-cols-4 :xl:grid-cols-6">
             {{-- ^^^^^^^^ Grid System ^^^^^^^ --}}
@@ -11,10 +11,10 @@
                 <div class="relative inline-block">
                     <a href="{{route('movies.show', $movie['id'])}}" class="relative">
                         <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
-                        <div class="absolute top-0 left-0 FavMovie" id="TEST" data-id="{{$movie['id']}}">
+                        <div class="absolute left-0 top-1 md:top-0 FavMovie" id="TEST" data-id="{{$movie['id']}}">
                                     <!-- Session Add to favorite -->
-                                <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
-                                    <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
+                                <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 md:rounded-t-lg btn btn-danger">
+                                    <i class="p-5 text-red-600 md:p-1 fas fa-heart fa-1x"></i>
                                 </a>
                         </div>
                     </a>
@@ -59,13 +59,13 @@
                         <a href="{{route('movies.show', $now['id'])}}">
                             <img src="{{'https://image.tmdb.org/t/p/w400/'.$now['poster_path']}}" alt="Game Poser" class="w-48 transition duration-150 ease-in-out hover:opacity-75">
                         </a>
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
+                        <div class="absolute bottom-0 w-16 h-16 bg-gray-900 rounded-full -left-2 md:right-0"
                         style="right:-20px; bottom:-20px">
                         <div class="flex items-center justify-center h-full text-xs font-semibold text-yellow-400">
                             {{$now['vote_average'] * 10}}%</div>
                         </div>
                     </div>
-                    <div class="ml-12">
+                    <div class="ml-2 md:ml-12">
                         <a href="{{route('movies.show', $now['id'])}}" class="block mt-2 text-lg font-semibold leading-tight transition duration-200 ease-in-out hover:text-blue-500">{{$now['title']}}</a>
                         <div class="mt-1 text-gray-400">
                             @foreach ($now['genre_ids'] as $genre)
