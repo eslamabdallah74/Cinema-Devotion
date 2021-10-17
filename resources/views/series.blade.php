@@ -54,10 +54,10 @@
                     <a href="{{route('showSeries.show', $now['id'])}}">
                         <img src="{{'https://image.tmdb.org/t/p/w400/'.$now['poster_path']}}" alt="Game Poser" class="w-48 transition duration-150 ease-in-out hover:opacity-75">
                     </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
-                    style="right:-20px; bottom:-20px">
-                    <div class="flex items-center justify-center h-full text-xs font-semibold text-yellow-400">
-                        {{$now['vote_average'] * 10}}%</div>
+                    <div class="absolute right-0 w-16 h-16 bg-gray-900 rounded-full -bottom-2 md:-right-3">
+                         <div class="flex items-center justify-center h-full text-xs font-semibold text-yellow-400">
+                        {{$now['vote_average'] * 10}}%
+                        </div>
                     </div>
                 </div>
                 <div class="ml-2 md:ml-12">

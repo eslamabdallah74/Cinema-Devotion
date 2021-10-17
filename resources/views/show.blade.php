@@ -14,7 +14,7 @@
                 </span>
                 <!-- Session Add to favorite -->
                 <span class="top-0 right-0 md:absolute">
-                    <div class="my-5 md:my-0 FavMovie" id="TEST" data-id="{{$movie['id']}}">
+                    <div class="my-3 md:my-0 FavMovie" id="TEST" data-id="{{$movie['id']}}">
                         <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
                           Add To Favorite  <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
                         </a>

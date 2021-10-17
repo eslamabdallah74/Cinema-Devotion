@@ -100,7 +100,7 @@
     {{-- Footer --}}
     <footer class="border-t border-gray-800">
         <div class="container flex px-4 py-6 mx-auto">
-            <div>  Powerd By <a href="https://www.themoviedb.org/" target="_blank" class="text-blue-500 hover:text-blue-900">TMDB   API</a> <span class="block md:inline-block md:ml-64"> Designed By <a class="text-blue-500 hover:text-blue-900" href="https://www.facebook.com/profile.php?id=100021391685332" target="_blank">Eslam Abdallah</a> </span>
+            <div>  Powerd By <a href="https://www.themoviedb.org/" target="_blank" class="text-blue-500 hover:text-blue-900">TMDB   API</a> <span class="block md:inline-block"> <span class="border-b-4">&</span> Designed By <a class="text-blue-500 hover:text-blue-900" href="https://www.facebook.com/profile.php?id=100021391685332" target="_blank">Eslam Abdallah</a> </span>
             </div>
         </div>
     </footer>
