@@ -12,12 +12,12 @@
                     <a href="{{route('showSeries.show', $serie['id'])}}">
                         <img src="{{'https://image.tmdb.org/t/p/w500/'.$serie['poster_path']}}" alt="Game Poser" class="transition duration-150 ease-in-out hover:opacity-75">
                     </a>
-                 <!-- Session Add to favorite -->
-                    <div class="absolute top-0 left-0 Series" id="TEST" data-id="{{$serie['id']}}">
-                        <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 md:rounded-t-lg btn btn-danger">
-                            <i class="p-5 text-red-600 md:p-1 fas fa-heart fa-1x"></i>
-                        </a>
-                    </div>
+                        <!-- Session Add to favorite -->
+                        <div class="absolute left-0 top-3 Series" id="TEST" data-id="{{$serie['id']}}">
+                            <a id="heart"  href="#" class="p-3 text-gray-100 bg-gray-900 rounded-br-full">
+                                <i class="text-red-600 fas fa-heart fa-1x "></i>
+                            </a>
+                        </div>
                     @if ($serie['vote_average'] )
                     <div class="absolute bottom-0 right-0 bg-gray-800 rounded-full w-14 h-14"
                     style="right:-20px; bottom:-20px">
@@ -42,10 +42,10 @@
         @foreach ($top_rated as $now)
         <div class="mt-8 space-y-12 recently-reviewd-container">
             {{-- Game Card --}}
-            <div class="relative flex p-6 bg-gray-800 rounded-lg shadow-md game">
+            <div class="relative p-6 bg-gray-800 rounded-lg shadow-md md:flex game">
                  <!-- Session Add to favorite -->
-                <div class="absolute right-0 top-2 Series" id="TEST" data-id="{{$now['id']}}">
-                        <a id="heart"  href="#" class="p-2 text-gray-100 bg-gray-700 rounded-t-lg btn btn-danger">
+                <div class="absolute right-0 top-1 Series" id="TEST" data-id="{{$now['id']}}">
+                        <a id="heart"  href="#" class="p-3 text-gray-100 bg-gray-900 rounded-bl-full">
                             <i class="p-1 text-red-600 fas fa-heart fa-1x"></i>
                         </a>
                 </div>
@@ -65,7 +65,7 @@
                     <p class="hidden mt-6 text-gray-300 game-desc lg:block">
                         {{$now['overview']}}
                     </p>
-                    <div class="flex mt-10 text-green-400">
+                    <div class="flex text-green-400 md:mt-10">
                         <div class="w-full lg:w-3/4">
                             <h5>Release date</h5>
                             <p class="text-gray-300">{{\carbon\carbon::parse($now['first_air_date'])->format('M d, Y')}}</p>
@@ -121,6 +121,8 @@
             success: function (status) {
                         favButton.remove();
                         document.getElementById("QtyCount").innerHTML = " "+ status.Qty +" ";
+                        document.getElementById("QtyCountPhone").innerHTML = " "+ status.Qty +" ";
+
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.status == 401) {
